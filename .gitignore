@@ -1,0 +1,5 @@
+.vscode
+*.o
+*.d
+./CORTEX_LM3S811_GCC/gcc
+./CORTEX_LM3S811_GCC/gcc/*

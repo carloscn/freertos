@@ -1,3 +1,19 @@
+## Pre
+Using qemu to run freertos on cortex-m3
+
+### Build:
+
+```bash
+git clone git@github.com:carloscn/freertos.git --depth=1
+cd freertos
+cd CORTEX_LM3S811_GCC
+make
+```
+
+### Run
+`qemu-system-arm -M lm3s811evb -nographic -kernel gcc/RTOSDemo.bin`
+use Ctrl-A+X to exit.
+
 ## Overview
 FreeRTOS offers feature stability with long term support (LTS) releases. FreeRTOS LTS libraries come with security updates and critical bug fixes to the FreeRTOS kernel and IoT libraries listed below for two years, and are maintained by AWS for the benefit of the FreeRTOS community. With FreeRTOS LTS, you get a complete set of libraries needed to build secure connected IoT and embedded products. Long term support helps reduce maintenance and testing costs associated with updating libraries on your devices already in production.
 
@@ -23,7 +39,7 @@ Libraries in this GitHub branch (also listed below) are part of the [FreeRTOS 20
 
 ## FreeRTOS LTS Versioning and Patches
 
-FreeRTOS LTS releases use a date-based versioning scheme (YYYYMM) followed by a patch sequential number (.XX). For example, FreeRTOS 202012.02 LTS means the second patch to the December-2020 FreeRTOS LTS release. You can review the [CHANGELOG](./CHANGELOG.md) and subscribe to [GitHub notifications](https://docs.github.com/en/free-pro-team@latest/github/managing-subscriptions-and-notifications-on-github/about-notifications) to receive information on patches or other updates to this repository.   
+FreeRTOS LTS releases use a date-based versioning scheme (YYYYMM) followed by a patch sequential number (.XX). For example, FreeRTOS 202012.02 LTS means the second patch to the December-2020 FreeRTOS LTS release. You can review the [CHANGELOG](./CHANGELOG.md) and subscribe to [GitHub notifications](https://docs.github.com/en/free-pro-team@latest/github/managing-subscriptions-and-notifications-on-github/about-notifications) to receive information on patches or other updates to this repository.
 
 ## Security
 
@@ -32,4 +48,3 @@ See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more inform
 ## License
 
 This library is licensed under the MIT License. See the [LICENSE](LICENSE.md) file.
-
