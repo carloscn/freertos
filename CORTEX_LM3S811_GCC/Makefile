@@ -25,6 +25,7 @@
 include makedefs
 
 RTOS_SOURCE_DIR=../FreeRTOS/FreeRTOS-Kernel/
+RTOS_APP_HELLO_DIR=./hello_world
 OUT_DIR=./out
 
 CFLAGS+=-I hw_include 	\
@@ -33,9 +34,17 @@ CFLAGS+=-I hw_include 	\
 		-I serial		\
 		-I ${RTOS_SOURCE_DIR}/include				\
 		-I ${RTOS_SOURCE_DIR}/portable/GCC/ARM_CM3	\
+		-I ${RTOS_APP_HELLO_DIR}					\
 		-D inline=
 
-VPATH=${RTOS_SOURCE_DIR}:${RTOS_SOURCE_DIR}/portable/MemMang:${RTOS_SOURCE_DIR}/portable/GCC/ARM_CM3:init:hw_include:serial:cli
+VPATH=${RTOS_SOURCE_DIR}:						\
+	  ${RTOS_SOURCE_DIR}/portable/MemMang:		\
+	  ${RTOS_SOURCE_DIR}/portable/GCC/ARM_CM3:	\
+	  init:										\
+	  hw_include:								\
+	  serial:									\
+	  cli:										\
+	  ${RTOS_APP_HELLO_DIR}
 
 OBJS=${COMPILER}/main.o                \
 	  ${COMPILER}/FreeRTOS_CLI.o       \
@@ -49,7 +58,8 @@ OBJS=${COMPILER}/main.o                \
       ${COMPILER}/heap_1.o             \
 	  ${COMPILER}/serialISR.o          \
 	  ${COMPILER}/serial.o             \
-      ${COMPILER}/osram96x16.o
+      ${COMPILER}/osram96x16.o		   \
+	  ${COMPILER}/hello.o
 
 INIT_OBJS= ${COMPILER}/startup.o
 

@@ -10,10 +10,12 @@
 
 /* FreeRTOS+CLI includes. */
 #include "FreeRTOS_CLI.h"
+#include "hello.h"
 
 /* Structure that defines the "task-stats" command line command.  This generates
 a table that gives information on each task in the system. */
 static BaseType_t prvTaskStatsCommand( char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString );
+static BaseType_t prvHelloCommand( char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString );
 static const CLI_Command_Definition_t xTaskStats =
 {
 	"task-stats", /* The command string to type. */
@@ -22,14 +24,28 @@ static const CLI_Command_Definition_t xTaskStats =
 	0 /* No parameters are expected. */
 };
 
+static const CLI_Command_Definition_t helloTask =
+{
+	"hello", /* The command string to type. */
+	"\r\nhello:\r\n Carlos's hello FreeRTOS task\r\n",
+	prvHelloCommand, /* The function to run. */
+	0 /* No parameters are expected. */
+};
 
 void RegisterCliCommands(void)
 {
-    
-	FreeRTOS_CLIRegisterCommand( &xTaskStats );	
+	FreeRTOS_CLIRegisterCommand( &xTaskStats );
+	FreeRTOS_CLIRegisterCommand( &helloTask );
 }
 
-
+static BaseType_t prvHelloCommand( char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString )
+{
+	(void)pcWriteBuffer;
+	(void)xWriteBufferLen;
+	(void)pcCommandString;
+	hello_entry();
+	return pdTRUE;
+}
 
 
 static BaseType_t prvTaskStatsCommand( char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString )
@@ -67,4 +83,3 @@ BaseType_t xSpacePadding;
 	pdFALSE. */
 	return pdFALSE;
 }
-
